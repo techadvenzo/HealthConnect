@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Connect | Medical Services</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Health Connect</h1>
+            <nav>
+                <button class="nav-btn active" onclick="switchTab('scanner')">Medicine Scanner</button>
+                <button class="nav-btn" onclick="switchTab('blood')">Blood Donation</button>
+                <button class="nav-btn" onclick="switchTab('news')">Alerts & News</button>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Medicine Scanner Section -->
+            <section id="scanner" class="tab-content active">
+                <h2>AI Medicine Scanner</h2>
+                <p>Scan a medicine or upload a photo to check its expiry, ban status, and dosage.</p>
+                
+                <div class="camera-container">
+                    <video id="camera-stream" autoplay playsinline></video>
+                    <img id="image-preview" style="display:none;" alt="Uploaded Medicine preview">
+                    <canvas id="snapshot" style="display:none;"></canvas>
+                    
+                    <div id="scanner-overlay" class="scanner-overlay">
+                        <p class="scan-text">Align medicine here to scan...</p>
+                    </div>
+                </div>
+                
+                <div class="upload-section">
+                    <p class="upload-text">Or upload an image from your device:</p>
+                    
+                    <label for="image-upload" class="custom-file-upload">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        Choose an Image
+                    </label>
+                    
+                    <input type="file" id="image-upload" accept="image/*" style="display: none;">
+                    <p id="file-name-display" class="file-name"></p>
+                </div>
+                
+                <button id="capture-btn" class="primary-btn">Analyze Medicine</button>
+                
+                <div id="scan-result" class="result-card" style="display:none;">
+                    <h3>Analysis Result</h3>
+                    <p id="med-name" style="white-space: pre-wrap;"></p>
+                </div>
+            </section>
+
+            <!-- Blood Donation Section -->
+            <section id="blood" class="tab-content" style="display:none;">
+                <h2>Blood Donation Directory</h2>
+                <p>Register as a donor or find life-saving blood matches in your area.</p>
+                
+                <div class="grid-layout">
+                    <!-- Register Form -->
+                    <div class="card">
+                        <h3>Register as a Donor</h3>
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="donor-name" placeholder="Enter your full name">
+                        </div>
+                        
+                        <div class="grid-layout" style="gap: 12px; margin-bottom: 18px;">
+                            <div>
+                                <label>Age</label>
+                                <input type="number" id="donor-age" placeholder="Age" min="18" max="65" style="margin-bottom: 0;">
+                            </div>
+                            <div>
+                                <label>Gender</label>
+                                <select id="donor-gender" style="margin-bottom: 0;">
+                                    <option value="">Select...</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Blood Group</label>
+                            <input type="text" id="donor-group" placeholder="e.g., O+, B-">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" id="donor-phone" placeholder="Enter mobile number">
+                        </div>
+                        <div class="form-group">
+                            <label>Location</label>
+                            <input type="text" id="donor-location" value="Prayagraj">
+                        </div>
+                        <button id="register-btn" class="primary-btn">Add to Directory</button>
+                    </div>
+
+                    <!-- Search Form -->
+                    <div class="card">
+                        <h3>Find a Donor</h3>
+                        <div class="form-group">
+                            <label>Search by Blood Group</label>
+                            <input type="text" id="search-group" placeholder="e.g., A+">
+                        </div>
+                        <button id="search-btn" class="secondary-btn">Search</button>
+                        
+                        <div id="search-results" class="results-list">
+                            <!-- Results will appear here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+                <!-- News & Alerts Section -->
+            <section id="news" class="tab-content" style="display:none;">
+                <h2>Global Medical Hub</h2>
+                <p>Live global updates on health crises, disease outbreaks, FDA/WHO warnings, and critical blood donation news.</p>
+                
+                <div id="news-container" class="news-grid">
+                    <!-- News cards injected by JavaScript -->
+                </div>
+            </section>
+        </main>
+
+        
+
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
