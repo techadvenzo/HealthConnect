@@ -1,2 +1,6 @@
-# OIBSIP
-Repostitary containing all my Oasis Infobyte internship projects
+# HealthConnect
+Repostitary containing the data files of HealthConnect.
+
+A project made by idt.
+
+United College of Engineering and Research.
